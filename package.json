@@ -17,14 +17,24 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "db:migrate": "ts-node node_modules/.bin/sequelize db:migrate",
+    "db:drop": "ts-node node_modules/.bin/sequelize db:drop",
+    "db:create": "ts-node node_modules/.bin/sequelize db:create",
+    "db:seed-dev": "ts-node node_modules/.bin/sequelize db:seed:all",
+    "db:seed-prod": "ts-node node_modules/.bin/sequelize db:seed:all --seeders-path db/seeders-prod",
+    "db:reset": "npm run db:drop && npm run db:create && npm run db:migrate && npm run db:seed-dev && npm run db:seed-prod"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "pg": "^8.10.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "sequelize": "^6.31.0",
+    "sequelize-cli": "^6.6.0",
+    "sequelize-typescript": "^2.1.5"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
