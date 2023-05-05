@@ -63,6 +63,8 @@ Caso queira acessar o visualizador do banco de dados Postgres, após a incializa
 
 Onde os dados para entrar são: email: admin@email.com e senha: user
 
+Para acessar a url do Swagger, basta entrar através dessa url: http://localhost:3000/api
+
 ## Test
 
 ```bash
