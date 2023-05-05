@@ -26,6 +26,10 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Tecnologias utilizadas
+
+As tecnologias principais utilizadas foram: node com Nest, Sequelize como ORM, e Swagger para documentação
+
 ## Installation
 
 ```bash
@@ -33,6 +37,16 @@ $ npm install
 ```
 
 ## Running the app
+
+Para rodar o projeto, é necessário que tenha a máquina tenha docker e node. O node sendo utilizado no desenvolvimento é o 19.8.1.
+
+Primeiramente, é necessário rodar o docker
+```bash
+# Comando docker
+$ docker-compose up -d
+```
+
+Depois, só iniciar o programa.
 
 ```bash
 # development
@@ -44,6 +58,10 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+Caso queira acessar o visualizador do banco de dados Postgres, após a incialização é possível através do link: http://localhost:5050/
+
+Onde os dados para entrar são: email: admin@email.com e senha: user
 
 ## Test
 

@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { UserModel } from "src/infrastructure/db/models/user.model";
 
 export enum GenderTypes {
@@ -7,13 +8,21 @@ export enum GenderTypes {
 }
 
 export class User {
+    @ApiProperty({name: 'id'})
     private _id?: number;
+    @ApiProperty({name: 'age'})
     private _age: number;
+    @ApiProperty({name: 'name'})
     private _name: string;
+    @ApiProperty({name: 'email'})
     private _email: string;
+    @ApiProperty({name: 'dateOfBirth'})
     private _dateOfBirth: Date;
+    @ApiProperty({name: 'gender', enum: GenderTypes})
     private _gender: string;
+    @ApiProperty({name: 'phone'})
     private _phone: string;
+    @ApiProperty({name: 'password'})
     private _password: string;
   
     constructor(user: UserModel) {
@@ -26,7 +35,7 @@ export class User {
       this._phone = user?.phone;
       this._password = user.password;
     }
-  
+    
     get id() {
       return this._id;
     }
