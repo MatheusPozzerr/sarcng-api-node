@@ -6,7 +6,7 @@ export class UserDto {
     private name: string;
     private email: string;
     private dateOfBirth: Date;
-    private gender: String
+    private gender: string;
     private phone: string;
 
   constructor(entity: User) {

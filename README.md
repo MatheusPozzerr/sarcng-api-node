@@ -78,6 +78,23 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Database settings
+1. Inicialize o projeto com o comando
+    ```bash
+    # development
+    $ npm run start
+    ```
+2. Após a inicialização, acesse o visualizador do banco de dados Postgres através do link: http://localhost:5050/
+3. Informe os seguintes dados de login: email: admin@email.com e senha: user
+4. Na aba "Dashboard", crie um novo 'server' clicando em "Add New Server"
+5. Faça as seguintes configurações a salve seu 'server':
+    - Name: construcao_software
+    - Host name/address: postgres
+    - Port: 5432
+    - Maintenance databse: postgres
+    - Username: admin
+6. Após isso, finalize criando um 'Database' chamado 'construcao_software'.
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
