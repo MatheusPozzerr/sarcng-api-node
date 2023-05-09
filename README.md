@@ -98,7 +98,7 @@ $ npm run test:cov
 
 ## Modelagem do Banco de Dados
 
-![Diagrama ER](src\images\ModelagemDeDados.png)
+![Diagrama ER](src/images/ModelagemDeDados.png)
 
 ## Observações gerais sobre o projeto
 ### Arquitetura
