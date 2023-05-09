@@ -1,0 +1,307 @@
+openapi: 3.0.3
+info:
+  title: SARC-NG - PUCRS
+  description: |-
+    Especificação das entidades 'users' e 'subjects' da API do projeto de aplicação web para reserva de recursos computacionais (SARC-NG). O projeto SARC-NG é uma aplicação web para gerenciamento de reservas de recursos computacionais. Através da plataforma, os usuários podem visualizar a disponibilidade de salas de aula, laboratórios, computadores e periféricos, realizar reservas, cancelar reservas existentes.
+  version: 0.0.1
+servers:
+  - url: http://localhost:8000
+tags:
+  - name: users
+    description: Especificação das rotas da entidade 'users'
+  - name: subjects
+    description: Especificação das rotas da entidade 'subjects'
+paths:
+  /users:
+    get:
+      tags:
+        - users
+      summary: Retorna a lista de todos os usuários
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '500':
+          description: Internal Server Error
+    post:
+      tags:
+        - users
+      summary: Cria um novo usuário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserBody'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+  /users/{id}:
+    get:
+      tags:
+        - users
+      summary: Retorna um usuário pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+    put:
+      tags:
+        - users
+      summary: Atualiza um usuário pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Not Found
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+    delete:
+      tags:
+        - users
+      summary: Remove um usuário pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+  /users/findByQuery:
+    get:
+      tags:
+        - users
+      summary: Retorna uma lista de usuários com base em uma consulta de turma ou disciplina
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+  /subjects:
+    get:
+      tags:
+        - subjects
+      summary: Retorna a lista de todas as disciplinas
+      responses:
+        '200':
+          description: OK
+    post:
+      tags:
+        - subjects
+      summary: Cria uma nova disciplina
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubjectBody'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+  /subjects/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: Id da disciplina
+    get:
+      tags:
+        - subjects
+      summary: Retorna os dados de uma disciplina específica
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - subjects
+      summary: Atualiza os dados de uma disciplina específica
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubjectBody'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - subjects
+      summary: Deleta uma disciplina específica
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+  /subjects/findByQuery:
+    get:
+        tags:
+          - subjects
+        summary: Retorna uma lista de disciplinas com base no termo de busca
+        parameters:
+          - in: query
+            name: query
+            schema:
+              type: string
+            required: true
+            description: Termo de busca
+        responses:
+          '200':
+            description: OK
+          '404':
+            description: Not Found
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        age:
+          type: integer
+        email:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        gender:
+          type: string
+          enum: [Male, Female, Other]
+        phone:
+          type: string
+      required:
+        - name
+        - email
+    UserBody:
+      type: object
+      properties:
+        name:
+          type: string
+        age:
+          type: integer
+        email:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        gender:
+          type: string
+          enum: [Male, Female, Other]
+        phone:
+          type: string
+      required:
+        - name
+        - email
+    Subject:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        schedule:
+          type: string
+        credits:
+          type: integer
+        program:
+          type: string
+        bibliographic_item:
+          type: string
+      required:
+        - name
+        - schedule
+        - credits
+    SubjectBody:
+      type: object
+      properties:
+        name:
+          type: string
+        schedule:
+          type: string
+        credits:
+          type: integer
+        program:
+          type: string
+        bibliographic_item:
+          type: string
+      required:
+        - name
+        - schedule
+        - credits
+  
