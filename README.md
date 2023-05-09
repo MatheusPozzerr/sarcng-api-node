@@ -79,6 +79,7 @@ $ npm run test:cov
 ```
 
 ## Configurações do Banco de Dados
+
 1. Inicialize o projeto com o comando
     ```bash
     # development
@@ -95,20 +96,26 @@ $ npm run test:cov
     - Username: admin
 6. Após isso, finalize criando um 'Database' chamado 'construcao_software'.
 
+## Modelagem do Banco de Dados
+
+![Diagrama ER](src\images\ModelagemDeDados.png)
+
 ## Observações gerais sobre o projeto
 ### Arquitetura
+
 Neste projeto, utilizamos 'Clean Architecture', pois tem como objetivo fornecer um sistema modular, escalável, independente de frameworks e tecnologias e fácil de testar e manter. Ao separar as responsabilidades em camadas com propósitos específicos, é possível garantir que cada camada possa ser alterada sem afetar as outras camadas do sistema, facilitando a evolução e manutenção do software ao longo do tempo.
 
-
 ### Node
+
 No projeto, utilizamos Node com Nest. O Node.js é uma plataforma que permite a criação de aplicações em JavaScript. O Nest é um framework para Node que utiliza a arquitetura do Angular e do Express, oferecendo recursos para a criação de APIs RESTful, com suporte a injeção de dependências e modularidade.
 
 ### Sequelize (ORM)
+
 O Sequelize é um ORM (Object-Relational Mapping) para Node.js que permite a criação de modelos de dados para bancos de dados relacionais, como o MySQL e o PostgreSQL. Com o Sequelize, é possível mapear objetos JavaScript para tabelas de banco de dados, além de oferecer recursos para manipulação de dados e criação de queries de forma mais simples.
 
 ### Swagger
-O Swagger é uma ferramenta para documentação de APIs RESTful que permite a geração automática de documentação a partir do código-fonte. Com o Swagger, é possível documentar endpoints, modelos de dados, parâmetros e respostas de forma padronizada e interativa, o que facilita o uso e a manutenção da API.
 
+O Swagger é uma ferramenta para documentação de APIs RESTful que permite a geração automática de documentação a partir do código-fonte. Com o Swagger, é possível documentar endpoints, modelos de dados, parâmetros e respostas de forma padronizada e interativa, o que facilita o uso e a manutenção da API.
 
 ## Licença
 
