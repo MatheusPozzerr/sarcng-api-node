@@ -26,6 +26,10 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Tecnologias utilizadas
+
+As tecnologias principais utilizadas foram: node com Nest, Sequelize como ORM, e Swagger para documentação
+
 ## Installation
 
 ```bash
@@ -33,6 +37,16 @@ $ npm install
 ```
 
 ## Running the app
+
+Para rodar o projeto, é necessário que tenha a máquina tenha docker e node. O node sendo utilizado no desenvolvimento é o 19.8.1.
+
+Primeiramente, é necessário rodar o docker
+```bash
+# Comando docker
+$ docker-compose up -d
+```
+
+Depois, só iniciar o programa.
 
 ```bash
 # development
@@ -44,6 +58,12 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+Caso queira acessar o visualizador do banco de dados Postgres, após a incialização é possível através do link: http://localhost:5050/
+
+Onde os dados para entrar são: email: admin@email.com e senha: user
+
+Para acessar a url do Swagger, basta entrar através dessa url: http://localhost:3000/api
 
 ## Test
 
@@ -57,6 +77,23 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## Database settings
+1. Inicialize o projeto com o comando
+    ```bash
+    # development
+    $ npm run start
+    ```
+2. Após a inicialização, acesse o visualizador do banco de dados Postgres através do link: http://localhost:5050/
+3. Informe os seguintes dados de login: email: admin@email.com e senha: user
+4. Na aba "Dashboard", crie um novo 'server' clicando em "Add New Server"
+5. Faça as seguintes configurações a salve seu 'server':
+    - Name: construcao_software
+    - Host name/address: postgres
+    - Port: 5432
+    - Maintenance databse: postgres
+    - Username: admin
+6. Após isso, finalize criando um 'Database' chamado 'construcao_software'.
 
 ## Support
 
