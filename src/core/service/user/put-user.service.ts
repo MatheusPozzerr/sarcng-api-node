@@ -13,10 +13,16 @@ export class PutUserService implements PutUserUsecase {
   ) {}
 
   public async updateUser(payload: User, userId: number): Promise<UserDto> {
-    return await this.userRepository.updateUser(payload, userId).then((user) => {
-      return new UserDto(user);
-    }).catch( (error) => {
-      throw new HttpException(error.options.cause.message, HttpStatus.BAD_REQUEST);
-    })
+    return await this.userRepository
+      .updateUser(payload, userId)
+      .then((user) => {
+        return new UserDto(user);
+      })
+      .catch((error) => {
+        throw new HttpException(
+          error.options.cause.message,
+          HttpStatus.BAD_REQUEST,
+        );
+      });
   }
 }

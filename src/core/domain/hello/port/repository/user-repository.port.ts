@@ -1,7 +1,6 @@
 import { UserModelWhere } from "src/application/rest-api/user.controller";
 import { User } from "../../entity/user";
 
-
 export interface UserRepositoryPort {
   getUsers(query: UserModelWhere): Promise<User[]>;
   getUser(id: number): Promise<User>;

@@ -13,10 +13,16 @@ export class DeleteUserService implements DeleteUserUsecase {
   ) {}
 
   public async deleteUserById(id: number): Promise<UserDto> {
-    return await this.userRepository.deleteUser(id).then((user) => {
-      return new UserDto(user);
-    }).catch( (error) => {
-      throw new HttpException(error.options.cause.message, HttpStatus.BAD_REQUEST);
-    })
+    return await this.userRepository
+      .deleteUser(id)
+      .then((user) => {
+        return new UserDto(user);
+      })
+      .catch((error) => {
+        throw new HttpException(
+          error.options.cause.message,
+          HttpStatus.BAD_REQUEST,
+        );
+      });
   }
 }

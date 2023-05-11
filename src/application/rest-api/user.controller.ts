@@ -1,5 +1,21 @@
-import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query } from "@nestjs/common";
-import { DeleteUserUsecaseDi, GetAllUsersUsecaseDi, GetUserUsecaseDI, PostUserUsecaseDI, UpdateUserUsecaseDi } from "../di/user/user.token";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Inject,
+  Param,
+  Post,
+  Put,
+  Query,
+} from "@nestjs/common";
+import {
+  DeleteUserUsecaseDi,
+  GetAllUsersUsecaseDi,
+  GetUserUsecaseDI,
+  PostUserUsecaseDI,
+  UpdateUserUsecaseDi,
+} from "../di/user/user.token";
 import { GetUserUsecase } from "src/core/domain/hello/usecase/user/get-user.usecase";
 import { UserDto } from "src/core/service/dto/user.dto";
 import { GenderTypes, User } from "src/core/domain/hello/entity/user";
@@ -17,14 +33,14 @@ export interface UserModelWhere {
   gender?: number;
 }
 
-@Controller('user')
+@Controller("user")
 export class UserController {
   constructor(
-    @Inject(GetUserUsecaseDI) 
+    @Inject(GetUserUsecaseDI)
     private readonly getUserUsecase: GetUserUsecase,
-    @Inject(PostUserUsecaseDI) 
+    @Inject(PostUserUsecaseDI)
     private readonly postUserUsecase: PostUserUsecase,
-    @Inject(GetAllUsersUsecaseDi) 
+    @Inject(GetAllUsersUsecaseDi)
     private readonly getAllUsersUsecase: GetAllUsersUsecase,
     @Inject(DeleteUserUsecaseDi)
     private readonly getUserDeleteUseCase: DeleteUserUsecase,
@@ -32,32 +48,31 @@ export class UserController {
     private readonly putUserUsecase: PutUserUsecase,
   ) {}
 
-  @Get(':id')
-  getUser(@Param('id') id: number): Promise<UserDto> {
+  @Get(":id")
+  getUser(@Param("id") id: number): Promise<UserDto> {
     return this.getUserUsecase.getUserById(id);
   }
 
-  @Delete(':id')
-  delet(@Param('id') id: number): Promise<UserDto> {
+  @Delete(":id")
+  delet(@Param("id") id: number): Promise<UserDto> {
     return this.getUserDeleteUseCase.deleteUserById(id);
   }
 
-  @Post('')
+  @Post("")
   postUser(@Body() user: User): Promise<UserDto> {
     return this.postUserUsecase.createUser(user);
   }
 
-  @Get('')
-  @ApiQuery({ name: 'gender', enum: GenderTypes, })
-  @ApiQuery({ name: 'email'})
-  @ApiQuery({ name: 'name'})
+  @Get("")
+  @ApiQuery({ name: "gender", enum: GenderTypes })
+  @ApiQuery({ name: "email" })
+  @ApiQuery({ name: "name" })
   getAllUsers(@Query() query: UserModelWhere): Promise<UserDto[]> {
     return this.getAllUsersUsecase.getAllUsers(query);
   }
 
-  @Put(':id')
-  putUser(@Param('id') id: number, @Body() user: User): Promise<UserDto> {
+  @Put(":id")
+  putUser(@Param("id") id: number, @Body() user: User): Promise<UserDto> {
     return this.putUserUsecase.updateUser(user, id);
   }
-
 }

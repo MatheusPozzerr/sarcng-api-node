@@ -12,13 +12,22 @@ export class GetUserService implements GetUserUsecase {
   ) {}
 
   public async getUserById(id: number): Promise<UserDto> {
-    return await this.userRepository.getUser(id).then((user) => {
-      return new UserDto(user);
-    }).catch( (error) => {
-      if(error.options.cause.message !== undefined){
-        throw new HttpException(error.options.cause.message, HttpStatus.BAD_REQUEST);
-      }
-      else throw new HttpException('Usuario nao encontrado com o id fornecido.', HttpStatus.BAD_REQUEST);
-    })
+    return await this.userRepository
+      .getUser(id)
+      .then((user) => {
+        return new UserDto(user);
+      })
+      .catch((error) => {
+        if (error.options.cause.message !== undefined) {
+          throw new HttpException(
+            error.options.cause.message,
+            HttpStatus.BAD_REQUEST,
+          );
+        } else
+          throw new HttpException(
+            "Usuario nao encontrado com o id fornecido.",
+            HttpStatus.BAD_REQUEST,
+          );
+      });
   }
 }

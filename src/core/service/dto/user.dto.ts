@@ -1,13 +1,13 @@
 import { User } from "src/core/domain/hello/entity/user";
 
 export class UserDto {
-    private id: number;
-    private age: number;
-    private name: string;
-    private email: string;
-    private dateOfBirth: Date;
-    private gender: string;
-    private phone: string;
+  private id: number;
+  private age: number;
+  private name: string;
+  private email: string;
+  private dateOfBirth: Date;
+  private gender: string;
+  private phone: string;
 
   constructor(entity: User) {
     this.id = entity.id;
@@ -15,8 +15,7 @@ export class UserDto {
     this.name = entity.name;
     this.email = entity.email;
     this.dateOfBirth = entity.dateOfBirth;
-    this.gender = entity.gender
+    this.gender = entity.gender;
     this.phone = entity.phone;
   }
-
 }

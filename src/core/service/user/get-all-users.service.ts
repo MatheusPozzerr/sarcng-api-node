@@ -7,20 +7,26 @@ import { UserModelWhere } from "src/application/rest-api/user.controller";
 
 @Injectable()
 export class GetAllUsersService implements GetAllUsersUsecase {
-    constructor(
-        @Inject(UserRepositoryPortDI)
-        private readonly userRepository: UserRepositoryPort,
-    ) { }
+  constructor(
+    @Inject(UserRepositoryPortDI)
+    private readonly userRepository: UserRepositoryPort,
+  ) {}
 
-    public async getAllUsers(query: UserModelWhere): Promise<UserDto[]> {
-        return await this.userRepository.getUsers(query).then((users) => {
-            const transformedUsers: UserDto[] = [];
-            users.forEach((user) => {
-                transformedUsers.push(new UserDto(user))
-            })
-            return transformedUsers;
-        }).catch((error) => {
-            throw new HttpException(error.options.cause.message, HttpStatus.BAD_REQUEST);
-        })
-    }
+  public async getAllUsers(query: UserModelWhere): Promise<UserDto[]> {
+    return await this.userRepository
+      .getUsers(query)
+      .then((users) => {
+        const transformedUsers: UserDto[] = [];
+        users.forEach((user) => {
+          transformedUsers.push(new UserDto(user));
+        });
+        return transformedUsers;
+      })
+      .catch((error) => {
+        throw new HttpException(
+          error.options.cause.message,
+          HttpStatus.BAD_REQUEST,
+        );
+      });
+  }
 }

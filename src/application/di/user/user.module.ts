@@ -1,5 +1,13 @@
 import { Module } from "@nestjs/common";
-import { GetUserUsecaseDI, UserRepositoryPortDI, UserRepository, PostUserUsecaseDI, GetAllUsersUsecaseDi, DeleteUserUsecaseDi, UpdateUserUsecaseDi } from "./user.token";
+import {
+  GetUserUsecaseDI,
+  UserRepositoryPortDI,
+  UserRepository,
+  PostUserUsecaseDI,
+  GetAllUsersUsecaseDi,
+  DeleteUserUsecaseDi,
+  UpdateUserUsecaseDi,
+} from "./user.token";
 import { SequelizeUserRepositoryAdapter } from "src/infrastructure/adapter/persistence/SequelizeUserRepositoryAdapter";
 import { UserController } from "src/application/rest-api/user.controller";
 import { GetUserService } from "src/core/service/user/get-user.service";
@@ -19,8 +27,8 @@ const repositoryProviders = [
 
 export const userRepositoryProviders = [
   {
-      provide: UserRepository,
-      useValue: UserModel,
+    provide: UserRepository,
+    useValue: UserModel,
   },
 ];
 
@@ -55,6 +63,10 @@ const useCaseProviders = [
 @Module({
   imports: [],
   controllers: [UserController],
-  providers: [...userRepositoryProviders, ...repositoryProviders, ...useCaseProviders],
+  providers: [
+    ...userRepositoryProviders,
+    ...repositoryProviders,
+    ...useCaseProviders,
+  ],
 })
 export class UserModule {}

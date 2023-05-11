@@ -6,17 +6,26 @@ import { Subject } from "src/core/domain/hello/entity/subject";
 import { PutSubjectUseCase } from "src/core/domain/hello/usecase/subject/put-subject.usecase";
 
 @Injectable()
-export class PutSubjectService implements PutSubjectUseCase{
-    constructor(
-        @Inject(SubjectRepositoryPortDI)
-        private readonly subjectRepository: SubjectRepositoryPort,
-    ){}
+export class PutSubjectService implements PutSubjectUseCase {
+  constructor(
+    @Inject(SubjectRepositoryPortDI)
+    private readonly subjectRepository: SubjectRepositoryPort,
+  ) {}
 
-    public async updateSubject(payload: Subject, subjectId: number): Promise<SubjectDto> {
-        return await this.subjectRepository.updateSubject(payload, subjectId).then((subject) => {
-            return new SubjectDto(subject);
-        }).catch((error) => {
-            throw new HttpException(error.options.cause.message, HttpStatus.BAD_REQUEST);
-        });
-    }
+  public async updateSubject(
+    payload: Subject,
+    subjectId: number,
+  ): Promise<SubjectDto> {
+    return await this.subjectRepository
+      .updateSubject(payload, subjectId)
+      .then((subject) => {
+        return new SubjectDto(subject);
+      })
+      .catch((error) => {
+        throw new HttpException(
+          error.options.cause.message,
+          HttpStatus.BAD_REQUEST,
+        );
+      });
+  }
 }

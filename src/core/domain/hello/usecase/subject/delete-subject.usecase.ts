@@ -2,5 +2,5 @@
 import { SubjectDto } from "src/core/service/dto/subject.dto";
 
 export interface DeleteSubjectUseCase {
-    deleteSubjectById(idSubject: number): Promise<SubjectDto>;
+  deleteSubjectById(idSubject: number): Promise<SubjectDto>;
 }

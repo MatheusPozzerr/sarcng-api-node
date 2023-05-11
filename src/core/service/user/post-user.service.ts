@@ -13,10 +13,16 @@ export class PostUserService implements PostUserUsecase {
   ) {}
 
   public async createUser(payload: User): Promise<UserDto> {
-    return await this.userRepository.postUser(payload).then((user) => {
-      return new UserDto(user);
-    }).catch( (error) => {
-      throw new HttpException(error.options.cause.message, HttpStatus.BAD_REQUEST);
-    })
+    return await this.userRepository
+      .postUser(payload)
+      .then((user) => {
+        return new UserDto(user);
+      })
+      .catch((error) => {
+        throw new HttpException(
+          error.options.cause.message,
+          HttpStatus.BAD_REQUEST,
+        );
+      });
   }
 }
