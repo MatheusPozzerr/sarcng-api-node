@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Inject, Injectable } from "@nestjs/common";
-import { GetSubjectUseCase } from "src/core/domain/hello/usecase/subject/get-subject.usecase";
+import { GetSubjectUseCase } from "src/core/domain/usecase/subject/get-subject.usecase";
 import { SubjectRepositoryPortDI } from "src/application/di/subject/subject.token";
-import { SubjectRepositoryPort } from "src/core/domain/hello/port/repository/subject-repository.port";
-import { SubjectDto } from "../dto/subject.dto";
+import { SubjectDto } from "./dto/subject.dto";
+import { SubjectRepositoryPort } from "src/core/domain/repository/subject-repository.port";
 
 @Injectable()
 export class GetSubjectService implements GetSubjectUseCase {

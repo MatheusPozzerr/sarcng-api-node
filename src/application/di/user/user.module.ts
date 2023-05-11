@@ -8,10 +8,10 @@ import {
   DeleteUserUsecaseDi,
   UpdateUserUsecaseDi,
 } from "./user.token";
-import { SequelizeUserRepositoryAdapter } from "src/infrastructure/adapter/persistence/SequelizeUserRepositoryAdapter";
+import { SequelizeUserRepositoryAdapter } from "src/infrastructure/db/user/SequelizeUserRepositoryAdapter";
 import { UserController } from "src/application/rest-api/user.controller";
 import { GetUserService } from "src/core/service/user/get-user.service";
-import { UserModel } from "src/infrastructure/db/models/user.model";
+import { UserModel } from "src/infrastructure/db/user/user.model";
 import { PostUserService } from "src/core/service/user/post-user.service";
 import { GetAllUsersService } from "src/core/service/user/get-all-users.service";
 import { DeleteUserService } from "src/core/service/user/delete-user.service";

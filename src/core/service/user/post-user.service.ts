@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus, Inject, Injectable } from "@nestjs/common";
 import { UserRepositoryPortDI } from "src/application/di/user/user.token";
-import { UserRepositoryPort } from "../../domain/hello/port/repository/user-repository.port";
-import { UserDto } from "../dto/user.dto";
-import { User } from "../../domain/hello/entity/user";
-import { PostUserUsecase } from "src/core/domain/hello/usecase/user/post-user.usecase";
+import { UserDto } from "./dto/user.dto";
+import { PostUserUsecase } from "src/core/domain/usecase/user/post-user.usecase";
+import { User } from "src/core/domain/entity/user";
+import { UserRepositoryPort } from "src/core/domain/repository/user-repository.port";
 
 @Injectable()
 export class PostUserService implements PostUserUsecase {

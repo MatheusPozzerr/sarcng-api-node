@@ -10,10 +10,10 @@ import {
   DeleteSubjectUseCaseDI,
   UpdateSubjectUseCaseDI,
 } from "./subject.token";
-import { SequelizeSubjectRepositoryAdapter } from "src/infrastructure/adapter/persistence/SequelizeSubjectRepositoryAdapter";
+import { SequelizeSubjectRepositoryAdapter } from "src/infrastructure/db/subject/SequelizeSubjectRepositoryAdapter";
 import { SubjectController } from "src/application/rest-api/subject.controller";
 import { GetSubjectService } from "src/core/service/subject/get-subject.service";
-import { SubjectModel } from "src/infrastructure/db/models/subject.model";
+import { SubjectModel } from "src/infrastructure/db/subject/subject.model";
 import { PostSubjectService } from "src/core/service/subject/post-subject.service";
 import { GetAllSubjectsService } from "src/core/service/subject/get-all-subjects.service";
 import { DeleteSubjectService } from "src/core/service/subject/delete-subject.service";

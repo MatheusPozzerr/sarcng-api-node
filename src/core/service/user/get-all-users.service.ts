@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus, Inject, Injectable } from "@nestjs/common";
 import { UserRepositoryPortDI } from "src/application/di/user/user.token";
-import { UserRepositoryPort } from "../../domain/hello/port/repository/user-repository.port";
-import { UserDto } from "../dto/user.dto";
-import { GetAllUsersUsecase } from "src/core/domain/hello/usecase/user/get-all-users.usecase";
+import { UserDto } from "./dto/user.dto";
+import { GetAllUsersUsecase } from "src/core/domain/usecase/user/get-all-users.usecase";
 import { UserModelWhere } from "src/application/rest-api/user.controller";
+import { UserRepositoryPort } from "src/core/domain/repository/user-repository.port";
 
 @Injectable()
 export class GetAllUsersService implements GetAllUsersUsecase {

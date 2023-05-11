@@ -17,14 +17,14 @@ import {
   PostSubjectUseCaseDI,
   UpdateSubjectUseCaseDI,
 } from "../di/subject/subject.token";
-import { GetSubjectUseCase } from "src/core/domain/hello/usecase/subject/get-subject.usecase";
-import { SubjectDto } from "src/core/service/dto/subject.dto";
-import { Subject } from "src/core/domain/hello/entity/subject";
-import { PostSubjectUseCase } from "src/core/domain/hello/usecase/subject/post-subject.usecase";
-import { GetAllSubjectsUseCase } from "src/core/domain/hello/usecase/subject/get-all-subjects.usecase";
-import { DeleteSubjectUseCase } from "src/core/domain/hello/usecase/subject/delete-subject.usecase";
-import { PutSubjectUseCase } from "src/core/domain/hello/usecase/subject/put-subject.usecase";
+import { GetSubjectUseCase } from "src/core/domain/usecase/subject/get-subject.usecase";
+import { SubjectDto } from "src/core/service/subject/dto/subject.dto";
+import { PostSubjectUseCase } from "src/core/domain/usecase/subject/post-subject.usecase";
+import { GetAllSubjectsUseCase } from "src/core/domain/usecase/subject/get-all-subjects.usecase";
+import { DeleteSubjectUseCase } from "src/core/domain/usecase/subject/delete-subject.usecase";
+import { PutSubjectUseCase } from "src/core/domain/usecase/subject/put-subject.usecase";
 import { query } from "express";
+import { Subject } from "src/core/domain/entity/subject";
 
 export interface SubjectModelWhere {
   name?: string;
