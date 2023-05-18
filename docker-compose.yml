@@ -20,6 +20,16 @@ services:
 
     ports:
       - "5050:5050"
+  
+  sarcng-api-image:
+    image: sarcng-api-image
+    command: node dist/main
+    ports:
+      - "8080:8080"
+    volumes:
+      - noede-test:/usr/app
+
 
 volumes:
   data:
+  node-test:
