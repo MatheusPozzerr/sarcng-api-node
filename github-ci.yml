@@ -1,0 +1,14 @@
+name: github-ci.yml
+
+on:
+  push:
+    branches: [ main ]
+  
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    run: docker build . -t sarcng-api-image

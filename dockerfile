@@ -10,6 +10,9 @@ COPY package*.json ./
 # Instala as dependências do projeto
 RUN npm install
 
+#Variabel ambiente
+ENV [variable-name]=[default-value]
+
 # Copia os arquivos do projeto para o diretório de trabalho
 COPY . .
 

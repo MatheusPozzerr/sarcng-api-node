@@ -20,17 +20,6 @@ services:
 
     ports:
       - "5050:5050"
-  
-  sarcng-api-image:
-    environment:
-      NODE_ENV: production
-    image: sarcng-api-image
-    command: node dist/main
-    ports:
-      - "3333:3000"
-    volumes:
-      - node-test:/usr/app
 
 volumes:
   data:
-  node-test:
