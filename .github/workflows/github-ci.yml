@@ -11,4 +11,4 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    run: docker build . -t sarcng-api-image
+    - run: docker build . -t sarcng-api-image
