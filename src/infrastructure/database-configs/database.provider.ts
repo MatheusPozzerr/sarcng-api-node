@@ -23,10 +23,22 @@ export const databaseProviders = [
         default:
           config = databaseConfig.development;
       }
-      const sequelize = new Sequelize(config);
-      sequelize.addModels([UserModel]);
-      await sequelize.sync();
-      return sequelize;
+      let counter = 0;
+      const idIntervalo = setInterval(async () =>{
+        try{
+          const sequelize = new Sequelize(config);
+          sequelize.addModels([UserModel]);
+          await sequelize.sync();
+          clearInterval(idIntervalo);
+          return sequelize;
+        }
+        catch(e){
+          counter++;
+          if(counter <= 11){
+            clearInterval(idIntervalo);
+          }
+        }
+      }, 1000);
     },
   },
 ];
