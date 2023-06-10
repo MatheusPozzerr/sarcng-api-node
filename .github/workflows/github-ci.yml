@@ -22,11 +22,13 @@ jobs:
       AWS_ACCESS_KEY_ID: ASIAVM4F32DWZ6HXAEAI
       AWS_SECRET_ACCESS_KEY: VECOP31VEhTR8/9nEUjEAoB+tQ66MHC4k9vb3NzW 
       AWS_REGION: us-east-1
+      AWS-SESSION-TOKEN: FwoGZXIvYXdzEHgaDDTXIGxRFOilKMzhSiLMAVg9Vkj5ctdX/iku9HvbAMwwiDJ50BNsxgqpsu6o/9sdkUE7nINc//Sg8dA5E62noRHUJUffi3w/nJ0mvrXks8QoOvNqZJJMB5w6DJX5x66IRCsixQ2+k17ZS3rs0BgCh1yvsUAVzChYq/PAxgx6CHw+6aZGDfl2n3OPJWCUUvR1KV5kP9RRTbaPmkmodM/pmZXaRIfc3fkh5yILEain3vwzJyPtnvrzE2Pl6mzurMm7cX7yx3g1h24zi2afg/Dll9Zb/7LZcTjrhPCIFyiR8pOkBjItv00Qgo/qmBXGiHCwqcxsC0xaBm+LMOfJ5Q3YzF6J60FPNm5hNC8DV1eVyxm0
 
     steps:
     - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v2
+      uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
