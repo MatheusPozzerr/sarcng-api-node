@@ -19,9 +19,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - id: deploy
-        uses: bitovi/github-actions-deploy-docker-to-ec2@v0.5.0
-        with:
-          aws_access_key_id: ASIAVM4F32DWTN2WFFV7
-          aws_secret_access_key: J5+m5tGT+vVXnh8b+sC45iDS20e01XO5R24WcMX+
-          aws_default_region: us-east-1
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ASIAVM4F32DWTN2WFFV7
+        aws-secret-access-key: J5+m5tGT+vVXnh8b+sC45iDS20e01XO5R24WcMX+
+        aws-region: us-east-1
