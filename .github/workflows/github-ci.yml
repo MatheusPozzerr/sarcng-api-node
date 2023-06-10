@@ -18,10 +18,15 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env: 
+      AWS_ACCESS_KEY_ID: ASIAVM4F32DWZ6HXAEAI
+      AWS_SECRET_ACCESS_KEY: VECOP31VEhTR8/9nEUjEAoB+tQ66MHC4k9vb3NzW 
+      AWS_REGION: us-east-1
+
     steps:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: ASIAVM4F32DWZ6HXAEAI
-        aws-secret-access-key: VECOP31VEhTR8/9nEUjEAoB+tQ66MHC4k9vb3NzW
-        aws-region: us-east-1
+        aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
