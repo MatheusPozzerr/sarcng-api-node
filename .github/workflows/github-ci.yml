@@ -35,6 +35,4 @@ jobs:
 
           ssh-keyscan -t rsa -H -p 22 172.31.84.111 >> ~/.ssh/known_hosts
 
-          scp -i key.pem docker-compose.yml
-          ec2-user@172.31.84.111:/home/ec2-user/docker-compose.yml
 
