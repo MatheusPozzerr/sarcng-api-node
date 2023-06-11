@@ -47,6 +47,6 @@ jobs:
 
       - name: Deploy Docker image to EC2
         run: >
-          ssh-keyscan -H ec2-user@ec2-3-94-90-15.compute-1.amazonaws.com >> ~/.ssh/known_hosts
+          SSH="ssh -o StrictHostKeyChecking=no -i key.pem ec2-user@ec2-3-145-171-213.us-east-2.compute.amazonaws.com"
 
-          ssh -i key.pem -o StrictHostKeyChecking=no ec2-user@ec2-3-94-90-15.compute-1.amazonaws.com 'docker pull ${{ secrets.DOCKER_USERNAME }}/sarcng-api-image:latest && docker run -d ${{ secrets.DOCKER_USERNAME }}/sarcng-api-image:latest'
+          $SSH "docker pull ${{ secrets.DOCKER_USERNAME }}/sarcng-api-image:latest && docker run -d ${{ secrets.DOCKER_USERNAME }}/sarcng-api-image:latest"
