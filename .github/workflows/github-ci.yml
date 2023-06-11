@@ -1,46 +1,40 @@
 name: github-ci.yml
-
-on:
+'on':
   push:
-    branches: [ main ]
-  
-
+    branches:
+      - main
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - run: docker build . -t sarcng-api-image
-
+      - uses: actions/checkout@v2
+      - run: docker build . -t sarcng-api-image
   EC2-Deploy:
-
     runs-on: ubuntu-latest
-
-    env: 
+    env:
       AWS_ACCESS_KEY_ID: ASIAVM4F32DW6Y5KHO7R
-      AWS_SECRET_ACCESS_KEY: ioKAawtn7+ajKz4IX9luiXKAnhEhKypDB1yWMaEC 
+      AWS_SECRET_ACCESS_KEY: ioKAawtn7+ajKz4IX9luiXKAnhEhKypDB1yWMaEC
       AWS_REGION: us-east-1
-      AWS-SESSION-TOKEN: FwoGZXIvYXdzEH4aDMtg4bc/SG5d/8x+KSLMAdq/6mMihigjuxgLyWO1C5ZL5JcvqS0Wst5+znxM1bU9RsgGbnhhwPHyjyGUnsGTNhIILxZ/5E/b+GPrhIncgQ3r3wnD4D+E1CVhMBhJE1PLz7dk+0yt34e11p8zgYrcpHwtBQ4VyDif2UQAZB1V/5BLyGKQ4/9K3gEvH9YLJ5CEZAHmlKdLh0G2ziBbvOUaAetOixLr1Z9AeEk2Vul1cwD27Vb3jNvmvSD94+6o9AcWSd7ILV8E/eihlM7PTXoEkfapc+K8mV5EyqXDISj3k5WkBjItYZp32nBp2ccyeN5Rn6jJzpmdH8CcYmE/3qGeIllwQ7Yk6aqmuef7wvpRk0H/
-
+      AWS-SESSION-TOKEN: >-
+        FwoGZXIvYXdzEH4aDMtg4bc/SG5d/8x+KSLMAdq/6mMihigjuxgLyWO1C5ZL5JcvqS0Wst5+znxM1bU9RsgGbnhhwPHyjyGUnsGTNhIILxZ/5E/b+GPrhIncgQ3r3wnD4D+E1CVhMBhJE1PLz7dk+0yt34e11p8zgYrcpHwtBQ4VyDif2UQAZB1V/5BLyGKQ4/9K3gEvH9YLJ5CEZAHmlKdLh0G2ziBbvOUaAetOixLr1Z9AeEk2Vul1cwD27Vb3jNvmvSD94+6o9AcWSd7ILV8E/eihlM7PTXoEkfapc+K8mV5EyqXDISj3k5WkBjItYZp32nBp2ccyeN5Rn6jJzpmdH8CcYmE/3qGeIllwQ7Yk6aqmuef7wvpRk0H/
     steps:
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
-        aws-session-token: ${{ env.AWS-SESSION-TOKEN }}
-        aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
-
-    - name: Write EC2 Key Pair to File
-      run: echo "${{ secrets.AWS_SECRET_KEY }}" > key.pem
-
-    - name: Set Permissions on Key Pair File
-      run: chmod 400 key.pem
-    
-     - name: Deploy Docker image to EC2
-       run: |
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: '${{ env.AWS_ACCESS_KEY_ID }}'
+          aws-session-token: '${{ env.AWS-SESSION-TOKEN }}'
+          aws-secret-access-key: '${{ env.AWS_SECRET_ACCESS_KEY }}'
+          aws-region: '${{ env.AWS_REGION }}'
+      - name: Write EC2 Key Pair to File
+        run: 'echo "${{ secrets.AWS_SECRET_KEY }}" > key.pem'
+      - name: Set Permissions on Key Pair File
+        run: chmod 400 key.pem
+      - name: Deploy Docker image to EC2
+        run: >
           ssh-keyscan 54.166.69.83 >> ~/.ssh/known_hosts
-          scp -i key.pem docker-compose.yml ec2-user@54.166.69.83:/home/ec2-user/docker-compose.yml
-          ssh -i key.pem ec2-user@54.166.69.83 'docker-compose pull && docker-compose up -d'
+
+          scp -i key.pem docker-compose.yml
+          ec2-user@54.166.69.83:/home/ec2-user/docker-compose.yml
+
+          ssh -i key.pem ec2-user@54.166.69.83 'docker-compose pull &&
+          docker-compose up -d'
