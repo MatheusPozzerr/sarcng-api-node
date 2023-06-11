@@ -32,18 +32,21 @@ jobs:
           aws-session-token: '${{ env.AWS-SESSION-TOKEN }}'
           aws-secret-access-key: '${{ env.AWS_SECRET_ACCESS_KEY }}'
           aws-region: '${{ env.AWS_REGION }}'
-      # - name: Write EC2 Key Pair to File
-      #   run: 'echo "${{ secrets.AWS_SECRET_KEY }}" > key.pem'
+
       - name: Install SSH client
         run: sudo apt-get install -y ssh
 
-      - name: Copy SSH key to runner
-        run: echo "${{ secrets.AWS_SECRET_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+      # - name: Copy SSH key to runner
+      #   run: echo "${{ secrets.AWS_SECRET_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
 
-      # - name: Set Permissions on Key Pair File
-      #   run: chmod 400 key.pem
+      - name: Write EC2 Key Pair to File
+        run: 'echo "${{ secrets.AWS_SECRET_KEY }}" > key.pem'
+
+      - name: Set Permissions on Key Pair File
+        run: chmod 600 key.pem
+
       - name: Deploy Docker image to EC2
         run: >
-          ssh-keyscan -H endereco_ip_publico_da_instancia >> ~/.ssh/known_hosts
+          ssh-keyscan -H ec2-user@ec2-3-94-90-15.compute-1.amazonaws.com >> ~/.ssh/known_hosts
 
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ec2-user@ec2-3-94-90-15.compute-1.amazonaws.com 'docker pull ${{ secrets.DOCKER_USERNAME }}/sarcng-api-image:latest && docker run -d ${{ secrets.DOCKER_USERNAME }}/sarcng-api-image:latest'
+          ssh -i key.pem -o StrictHostKeyChecking=no ec2-user@ec2-3-94-90-15.compute-1.amazonaws.com 'docker pull ${{ secrets.DOCKER_USERNAME }}/sarcng-api-image:latest && docker run -d ${{ secrets.DOCKER_USERNAME }}/sarcng-api-image:latest'
