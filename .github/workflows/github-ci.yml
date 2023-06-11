@@ -31,7 +31,7 @@ jobs:
         run: chmod 400 key.pem
       - name: Deploy Docker image to EC2
         run: >
-          mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
+          mkdir -p ~/.ssh
           ssh-keyscan -t rsa -H -p 22 54.166.69.83 >> ~/.ssh/known_hosts
 
           scp -i key.pem docker-compose.yml
