@@ -32,11 +32,11 @@ jobs:
       - name: Deploy Docker image to EC2
         run: >
           mkdir -p ~/.ssh
-          
-          ssh-keyscan -t rsa -H -p 22 54.166.69.83 >> ~/.ssh/known_hosts
+
+          ssh-keyscan -t rsa -H -p 22 172.31.84.111 >> ~/.ssh/known_hosts
 
           scp -i key.pem docker-compose.yml
-          ec2-user@54.166.69.83:/home/ec2-user/docker-compose.yml
+          ec2-user@172.31.84.111:/home/ec2-user/docker-compose.yml
 
-          ssh -i key.pem ec2-user@54.166.69.83 'docker-compose pull &&
+          ssh -i key.pem ec2-user@172.31.84.111 'docker-compose pull &&
           docker-compose up -d'
