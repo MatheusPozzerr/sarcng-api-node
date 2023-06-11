@@ -38,5 +38,3 @@ jobs:
           scp -i key.pem docker-compose.yml
           ec2-user@172.31.84.111:/home/ec2-user/docker-compose.yml
 
-          ssh -i key.pem ec2-user@172.31.84.111 'docker-compose pull &&
-          docker-compose up -d'
