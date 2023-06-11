@@ -32,6 +32,7 @@ jobs:
       - name: Deploy Docker image to EC2
         run: >
           mkdir -p ~/.ssh
+          
           ssh-keyscan -t rsa -H -p 22 54.166.69.83 >> ~/.ssh/known_hosts
 
           scp -i key.pem docker-compose.yml
