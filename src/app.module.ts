@@ -7,4 +7,5 @@ import { DatabaseModule } from "./infrastructure/database-configs/database.modul
 @Module({
   imports: [DatabaseModule, UserModule, SubjectModule],
 })
+// 
 export class AppModule {}
