@@ -8,17 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: docker build . -t sarcng-api-image
-
-      - name: Log in to Docker Hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Push image
       - run: >
-          docker tag denunciaviolencia:latest 029236691098.dkr.ecr.us-east-2.amazonaws.com/denunciaviolencia:latest
-      
-      - name: Push Docker Image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/sarcng-api-image:latest
+          docker build . -t sarcng-api-image
+
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+          docker push ${{ secrets.DOCKER_USERNAME }}/sarcng-api-image:latest
 
   EC2-Deploy:
     runs-on: ubuntu-latest
