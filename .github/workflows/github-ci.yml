@@ -55,4 +55,4 @@ jobs:
 
           $SSH "docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} && docker pull ${{ secrets.DOCKER_USERNAME }}/sarcng-api-image:latest"
 
-          $SSH "cd sarcng-api-node && docker-compose up"
+          $SSH "cd sarcng-api-node && docker-compose up -d"
