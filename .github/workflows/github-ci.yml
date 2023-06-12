@@ -49,4 +49,8 @@ jobs:
         run: >
           SSH="ssh -o StrictHostKeyChecking=no -i key.pem ec2-user@ec2-3-94-90-15.compute-1.amazonaws.com"
 
-          $SSH "docker pull ${{ secrets.DOCKER_USERNAME }}/sarcng-api-image:latest && docker run -d ${{ secrets.DOCKER_USERNAME }}/sarcng-api-image:latest"
+          $SSH "docker pull ${{ secrets.DOCKER_USERNAME }}/sarcng-api-image:latest"
+
+          "$SSH 'cd sarcng-api-node && docker-compose down'"
+
+          "$SSH 'cd sarcng-api-node && docker-compose up'"
