@@ -53,6 +53,6 @@ jobs:
 
           $SSH "cd sarcng-api-node && docker-compose down"
 
-          $SSH "docker rmi -f $(docker images -aq)"
+          $SSH "docker image prune -a --force"
 
           $SSH "cd sarcng-api-node && docker-compose up"
